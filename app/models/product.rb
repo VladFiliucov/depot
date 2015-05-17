@@ -6,4 +6,9 @@ class Product < ActiveRecord::Base
 		with: %r{\.(gif|jpg|png)\Z}i,
 		message: 'URL must be GIF, JPG or PNG!'
 	}
+	validates_length_of :title, minimum: 10, message: ": I bet custumer needs a longer title"
+
+	def self.latest
+		Product.order(:updated_at).last
+	end
 end
